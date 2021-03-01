@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react'
+// import React, { useEffect, useState } from 'react'
 import { useFetchGifs } from '../hooks/useFetchGifs';
 import { ImagesGifs } from './ImagesGifs';
 
 export const GetGifs = ({category}) => {
     
-const { loading } = useFetchGifs();
+const { loading, data} = useFetchGifs( category );
 
     return (
 <>
-    <h3>{category}</h3>
-    {loading ? 'Cargando' : 'Carga Finalizada'}
-        {/* <div className="card-grid">
+    <h3 className="card animate__animated animate__flip animate__delay-2s ">{category}</h3>
+        { loading && <p className="card animate__animated animate__flash">Loading</p>}
+
+        <div className="card-grid">
             
                 {
-                    images.map (info => 
+                    data.map (info => 
                     (
                      <ImagesGifs 
                      key={info.id} 
@@ -21,7 +22,7 @@ const { loading } = useFetchGifs();
                     ))
                 }
            
-        </div> */}
+        </div>
         </>
     )
 }
